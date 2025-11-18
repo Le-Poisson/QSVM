@@ -16,7 +16,7 @@ if __name__ == "__main__":
 
     print("训练QSVM模型...")
     
-    qsvm = QSVM(C=1.0, reps=2)
+    qsvm = QSVM(C=1.0, reps=1)
     qsvm.fit(X_train, y_train)
     y_pred = qsvm.predict(X_test)
     

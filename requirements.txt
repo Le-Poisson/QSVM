@@ -1,0 +1,5 @@
+qiskit==1.4.0
+matplotlib==3.9.4
+scikit-learn==1.4.2
+ucimlrepo
+numpy==1.26.4
