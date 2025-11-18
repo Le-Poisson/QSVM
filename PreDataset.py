@@ -4,6 +4,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.datasets import make_blobs
 
 
 def PreDataset(data_id, n_features=2, max_samples=100, train_ratio=0.85):
@@ -22,7 +23,6 @@ def PreDataset(data_id, n_features=2, max_samples=100, train_ratio=0.85):
     y = None
     
     if data_id == 1:
-        from sklearn.datasets import make_blobs
         X, y = make_blobs(n_samples=max_samples, n_features=n_features, centers=2, random_state=15, shuffle=True)
     elif data_id == 2:
         breast_cancer_wisconsin_diagnostic = fetch_ucirepo(id=17) 
@@ -33,6 +33,8 @@ def PreDataset(data_id, n_features=2, max_samples=100, train_ratio=0.85):
         
         X = X_df.values
         y = y_df.values.flatten()
+    elif data_id == 3:
+        X, y = make_blobs(n_samples=max_samples, n_features=n_features, centers=3, random_state=15, shuffle=True)
         
     # 先进行标准化，再进行降维
     scaler = StandardScaler()

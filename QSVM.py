@@ -6,7 +6,7 @@ from ZZFeatureMap import ZZFeatureMap, ZZFeatureValue
 
 
 class QSVM:
-    def __init__(self, C=1.0):
+    def __init__(self, C=1.0, reps=1):
         """
         QSVM
         
@@ -14,6 +14,7 @@ class QSVM:
         C: 正则化参数
         """
         self.C = C
+        self.reps = reps
         self.svm = None
         self.X_train = None
         self._train_states = None  # 缓存训练集态矢量，避免重复计算
@@ -22,7 +23,7 @@ class QSVM:
         """把一批样本提前编码成态矢量数组（加速计算）"""
         states = []
         for x in X:
-            fmap = ZZFeatureMap(len(x), reps=1)
+            fmap = ZZFeatureMap(len(x), reps=self.reps)
             fmap.construct_circuit(x)
             sv = Statevector.from_instruction(fmap.circuit)
             states.append(sv.data)  # 直接存 numpy 向量
